@@ -4,34 +4,28 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "AIGUARD.generated.h"
-
-class UPawnSensingComponent;
+#include "PlayerCharacter.generated.h"
 
 UCLASS()
-class VRGAME_API AAIGUARD : public ACharacter
+class VRGAME_API APlayerCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	AAIGUARD();
+	APlayerCharacter();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UPawnSensingComponent* PawnSensingComp;
-
-	UFUNCTION()
-	void OnPawnSeen(APawn* SeenPawn);
-
-	UFUNCTION()
-	void OnNoiseHeard(APawn* Instigator, const FVector& Location, float Volume)
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	
+	
 };
